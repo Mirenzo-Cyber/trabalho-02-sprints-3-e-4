@@ -1,10 +1,17 @@
-import time
+"""
+Módulo S3_05: Busca e Ordenação.
+Contém implementações de algoritmos de ordenação (Bubble Sort, Selection Sort)
+e busca (Busca Binária) aplicados ao gerenciamento de ativos de TI.
+"""
 
 
 # ==========================================
 # 1. Bubble Sort O(n^2)
 # ==========================================
 def bubble_sort(lista):
+    """
+    Ordena uma lista de ativos utilizando o algoritmo Bubble Sort.
+    """
     n = len(lista)
     for i in range(n):
         trocou = False
@@ -16,10 +23,14 @@ def bubble_sort(lista):
             break
     return lista
 
+
 # ==========================================
 # 2. Selection Sort O(n^2)
 # ==========================================
 def selection_sort(lista):
+    """
+    Ordena uma lista de ativos utilizando o algoritmo Selection Sort.
+    """
     n = len(lista)
     for i in range(n):
         min_idx = i
@@ -34,6 +45,9 @@ def selection_sort(lista):
 # 3. Insertion Sort O(n^2)
 # ==========================================
 def insertion_sort(lista):
+    """
+    Ordena uma lista de ativos utilizando o algoritmo Insertion Sort.
+    """
     for i in range(1, len(lista)):
         chave = lista[i]
         j = i - 1
@@ -48,6 +62,10 @@ def insertion_sort(lista):
 # 4. Busca Binária O(log n)
 # ==========================================
 def busca_binaria_ativos(lista_ordenada, id_alvo):
+    """
+    Realiza a busca binária de um ativo de TI pelo seu ID.
+    Retorna o índice do ativo na lista, ou -1 caso não seja encontrado.
+    """
     inicio = 0
     fim = len(lista_ordenada) - 1
 
@@ -55,7 +73,7 @@ def busca_binaria_ativos(lista_ordenada, id_alvo):
         meio = (inicio + fim) // 2
         if lista_ordenada[meio]["id"] == id_alvo:
             return meio
-        elif lista_ordenada[meio]["id"] < id_alvo:
+        if lista_ordenada[meio]["id"] < id_alvo:
             inicio = meio + 1
         else:
             fim = meio - 1
@@ -71,7 +89,7 @@ if __name__ == "__main__":
         {"id": "AT-005", "nome": "SRV-DB-PROD"},
         {"id": "AT-019", "nome": "SW-CORE-01"},
         {"id": "AT-001", "nome": "FW-BORDA-01"},
-        {"id": "AT-023", "nome": "NB-SEC-04"}
+        {"id": "AT-023", "nome": "NB-SEC-04"},
     ]
 
     print("--- LISTA DESORDENADA ---")
@@ -88,5 +106,7 @@ if __name__ == "__main__":
     # Busca Binária do Ativo AT-019
     alvo = "AT-019"
     idx = busca_binaria_ativos(ativos_ordenados, alvo)
-    print(f"\n--- BUSCA BINÁRIA ---")
-    print(f"Ativo {alvo} encontrado na posição índice {idx}: {ativos_ordenados[idx]}")
+    print("\n--- BUSCA BINÁRIA ---")
+    print(
+        f"Ativo {alvo} encontrado na posição indice " f"{idx}: {ativos_ordenados[idx]}"
+    )
